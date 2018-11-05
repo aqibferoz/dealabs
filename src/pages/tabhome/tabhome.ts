@@ -8,6 +8,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import {SelectSearchableModule, SelectSearchableComponent} from 'ionic-select-searchable'
 import { LoginPage } from '../login/login';
 import { HelperProvider } from '../../providers/helper/helper';
+import { QrcodePage } from '../qrcode/qrcode';
 
 /**
  * Generated class for the TabhomePage page.
@@ -79,7 +80,7 @@ export class TabhomePage{
       }))).subscribe(response=>{      //.subscribe, now i need data 
         this.deals = response;    
         console.log(this.deals);
-        this.getCat();
+        this.getCat();  //
       })
   }
 
@@ -101,7 +102,9 @@ export class TabhomePage{
     }
     );
   }
-  
+  qrcode(){
+    this.navCtrl.push(QrcodePage)
+  }
 
   addeals(){
     this.navCtrl.push("AddealsPage");

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AlertController, ToastController, LoadingController } from 'ionic-angular';
+import { ActionSheetController } from 'ionic-angular'
 
 /*
   Generated class for the HelperProvider provider.
@@ -12,7 +13,7 @@ export class HelperProvider {
  
   loader: any;
 
-  constructor(private alertCtrl:AlertController, private loadingCtrl: LoadingController,
+  constructor(private alertCtrl:AlertController, private loadingCtrl: LoadingController,  private actionSheetCtrl: ActionSheetController,
      private toastCtrl:ToastController) {
     console.log('Hello HelperProvider Provider');
   }
@@ -113,6 +114,36 @@ export class HelperProvider {
       duration:3000,
       position:'bottom'
     }).present();
+  }
+
+  presentActionSheet(title,n1,n2,myfunc,myfunc1) {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: title,
+      buttons: [
+        {
+          text: n1,
+          role: 'destructive',
+          cssClass: 'actions-sheet',
+          handler: myfunc
+        },
+        {
+          text: n2,
+          role: 'destructive',
+          cssClass: 'actions-sheet',
+          handler: myfunc1
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'action-sheet-cancel',
+          handler: () => {
+
+          }
+        }
+      ]
+    });
+ 
+    actionSheet.present();
   }
   
 }

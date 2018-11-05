@@ -27,8 +27,8 @@
               
             </ion-item>
             <!---Input field username-->
-            <input type="file" (change)="upload($event)" accept=".png,.jpg"/>
-            <!-- <button ion-button type="file" (change)="upload($event)" accept=".png,.jpg" (click) = "uploadPhoto()">Upload Image</button> -->
+            <!-- <input type="file" (change)="upload($event)" accept=".png,.jpg"/> -->
+            <button ion-button (click) = "choosePicture()">Upload Image</button>
             <h2><strong>Deal Link</strong></h2>
 
             <ion-input type="text" placeholder="http://www.site.com" [(ngModel)]="dealsData.link" style="width: 320px;

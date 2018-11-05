@@ -12,7 +12,8 @@ import {
   AngularFireUploadTask
 } from 'angularfire2/storage';
 import { HelperProvider } from '../../providers/helper/helper';
-// import { AndroidPermissions } from '@ionic-native/android-permissions';
+import { CameraOptions, Camera } from '@ionic-native/camera';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 
 
@@ -60,14 +61,19 @@ export class AddealsPage {
   // sourcex: any;
   // base64Image;
     createdCode = null;
+  sourcex: any;
+  base64Image: string;
+  uploadImageId: any;
+  image: any;
   
-  constructor(private helper: HelperProvider,private fireStorage: AngularFireStorage, public afStorage: AngularFireStorage, public afAuth : AngularFireAuth,private navCtrl: NavController,public api: AdddealsProvider) 
+  constructor(private helper: HelperProvider, private androidPermissions: AndroidPermissions, private camera: Camera,
+    private fireStorage: AngularFireStorage, public afAuth : AngularFireAuth,private navCtrl: NavController,public api: AdddealsProvider) 
 
   { 
-  //   this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
-  //   success => console.log('Permission granted'),
-  //   err => this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA,this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE])
-  // ).catch(err=> console.log(`cordova error`))
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
+    success => console.log('Permission granted'),
+    err => this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA,this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE])
+  ).catch(err=> console.log(`cordova error`))
   }
 
   //adding deals to the firestore
@@ -86,6 +92,7 @@ addDeals(){
     coupon: this.dealsData.coupon
   }
   console.log(data)
+  if(this.image !== '')
   this.api.createDeal(data).then(res=>{
     console.log('deal created')
   }
@@ -106,74 +113,84 @@ addDeals(){
 //   console.log(this.createdCode);
 // }
 
-// upload(){
-//   this.ref = this.fireStorage.ref(`users/${this.uploadImageId}`);
-//   let task = this.ref.putString(this.base64Image, 'data_url');
-//    task.snapshotChanges() 
-//    .pipe(finalize(() => {
-//      this.ref.getDownloadURL().subscribe(url => {
-//        this.image = url;
-//      });
-//    })).subscribe();      
+uploadPhoto(){
+  this.uploadImageId = Math.floor(Date.now() / 1000);
+  this.ref = this.fireStorage.ref(`deals/${this.uploadImageId}`);
+  let task = this.ref.putString(this.base64Image, 'data_url');
+   task.snapshotChanges() 
+   .pipe(finalize(() => {
+     this.ref.getDownloadURL().subscribe(url => {
+       this.image = url;
+     });
+   })).subscribe();      
 
-// }
+}
 
 
 
-//  takePhoto(source){
-//   if(source === 'camera'){
-//     this.sourcex =this.camera.PictureSourceType.CAMERA;
+ takePhoto(source){
+  if(source === 'camera'){
+    this.sourcex =this.camera.PictureSourceType.CAMERA;
     
-//   }else if(source === 'library'){
-//     this.sourcex =this.camera.PictureSourceType.PHOTOLIBRARY;
+  }else if(source === 'library'){
+    this.sourcex =this.camera.PictureSourceType.PHOTOLIBRARY;
 
-//   }
+  }
   
-//     const options: CameraOptions = {
-//       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-//       quality: 30,
-//       destinationType: this.camera.DestinationType.DATA_URL,
-//       encodingType: this.camera.EncodingType.JPEG,
-//       mediaType: this.camera.MediaType.PICTURE
-//     }
+    const options: CameraOptions = {
+      sourceType: this.sourcex,
+      quality: 30,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
 
-//     this.camera.getPicture(options).then((imageData) => {
+    this.camera.getPicture(options).then((imageData) => {
 
-//     this.base64Image = 'data:image/jpeg;base64,' + imageData;
-        //this.upload();
-//     }, (err) => {
-//     // Handle error
-//     console.log(err);
-//     });
-// }
-
-
-
+    this.base64Image = 'data:image/jpeg;base64,' + imageData;
+        this.uploadPhoto();
+    }, (err) => {
+    // Handle error
+    console.log(err);
+    });
+}
 
 
 //uploadig image
 
-upload(event) {
-  let id = Math.floor(Date.now() / 1000); 
-  const file = event.target.files[0];
-  const filePath = 'somename/';
-  const fileRef = this.afStorage.ref(id.toString());
-  const task = fileRef.put(file);
+// upload(event) {
+//   let id = Math.floor(Date.now() / 1000); 
+//   const file = event.target.files[0];
+//   const filePath = 'somename/';
+//   const fileRef = this.fireStorage.ref(id.toString());
+//   const task = fileRef.put(file);
 
-  // observe percentage changes
-  this.uploadPercent = task.percentageChanges();
-  // get notified when the download URL is available
-  task.snapshotChanges().pipe(
-      finalize(() => {
-        fileRef.getDownloadURL().subscribe(res=>{
-          this.downloadURL = res;
-          console.log(this.downloadURL);
-        })
-      })
-   )
-  .subscribe()
+//   // observe percentage changes
+//   this.uploadPercent = task.percentageChanges();
+//   // get notified when the download URL is available
+//   task.snapshotChanges().pipe(
+//       finalize(() => {
+//         fileRef.getDownloadURL().subscribe(res=>{
+//           this.downloadURL = res;
+//           console.log(this.downloadURL);
+//         })
+//       })
+//    )
+//   .subscribe()
+// }
+
+
+choosePicture(){
+  let myfunc = () => {
+    this.takePhoto('library');
+  };
+  let myfunc1 = () => {
+    this.takePhoto('camera');
+  };
+  this.helper.presentActionSheet('Choose an option.','Gallery','Camera',myfunc,myfunc1);
 }
 
 
-
 }
+
+

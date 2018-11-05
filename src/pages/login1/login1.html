@@ -14,26 +14,32 @@
 
               <br>
               
-
-              
             </ion-item>
+            <form [formGroup]="form" (ngSubmit)="signup(form)">
+              <button ion-button style="background-color:#F79071 !important;" (click) = "choosePicture()">Upload Image</button>
+
+
             <!---Input field username-->
-              <ion-input transparent text-left required type="text" placeholder="Name" [(ngModel)]="username" ></ion-input>
+              <ion-input transparent text-left required type="text" placeholder="Name" formControlName="name" #name ></ion-input>
+              <small *ngIf="f.name.errors"></small>
               <hr>
-              <ion-input text-left required type="text" placeholder="Email" [(ngModel)]="email" ></ion-input>
+              <ion-input text-left required type="text" placeholder="Email" formControlName="email" #email ></ion-input>
               <hr>
             
 
             <!---Input field password-->
            
-              <ion-input text-left required style="color:black;" type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+              <ion-input text-left required style="color:black;" type="password" placeholder="Password" formControlName="password" #password></ion-input>
               <hr>
-              <ion-input text-left required type="text" placeholder="Phone number" [(ngModel)]="number"></ion-input>
+              <!-- <ion-input text-left required style="color:black;" type="text" placeholder="Gender" formControlName="gender" #gender></ion-input>
+              <hr> -->
+              <ion-input text-left required type="text" placeholder="Phone number" formControlName="phone" #phone></ion-input>
               <hr>
             
             <div text-center>
               
-              <button ion-button default-button block text-capitalize box-shadow style="margin-top: 60px; background-color:#F79071 !important;" (click)="signup()">Sign Up</button>
+              <button ion-button default-button block text-capitalize box-shadow style="margin-top: 60px; background-color:#F79071 !important;" >Sign Up</button>
+            
               <a class="hr-text" data-content="Already Registered?" ></a>
 
                 <button ion-button default-button block text-capitalize box-shadow style="margin-top: 20px; background-color:#F79071 !important;" (click)="login()">Login</button>
@@ -43,7 +49,7 @@
              <!-- <button ion-button default-button block text-capitalize box-shadow style="margin-top: 40px; background-color:#F79071;" (click)="onEvent('onLogin')">Instagram</button> -->
               <p style = "color:#F79071">Not ready to sign up? Explore the app.</p>
             </div>
-
+          </form>
 
           </ion-col>
           

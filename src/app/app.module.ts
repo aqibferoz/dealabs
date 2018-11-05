@@ -48,6 +48,7 @@ import { BarcodeScanner  } from "@ionic-native/barcode-scanner";
 import { UsernamePageModule } from '../pages/username/username.module';
 // import { TabhomePage } from '../pages/tabhome/tabhome';
 import { TabhomePageModule } from '../pages/tabhome/tabhome.module';
+import { QrcodePage } from '../pages/qrcode/qrcode';
 
 
 
@@ -65,6 +66,7 @@ import { TabhomePageModule } from '../pages/tabhome/tabhome.module';
     DataRequestPage,
     DealPage,
     StartingPage,
+    QrcodePage
     
     
     
@@ -103,6 +105,7 @@ import { TabhomePageModule } from '../pages/tabhome/tabhome.module';
     DealPage,
     AddealsPage,
     StartingPage,
+    QrcodePage
     
   
     
@@ -117,9 +120,9 @@ import { TabhomePageModule } from '../pages/tabhome/tabhome.module';
     FirestoreProvider,
     AdddealsProvider,
     HelperProvider,
-    BarcodeScanner
-    // Camera,
-    // AndroidPermissions
+    BarcodeScanner,
+    Camera,
+    AndroidPermissions
 
   ]
 })

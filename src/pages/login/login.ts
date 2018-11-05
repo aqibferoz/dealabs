@@ -73,7 +73,7 @@ export class LoginPage {
                         localStorage.setItem('uid',data.user.uid);
                         this.helper.load()
                         this.helper.presentBottomToast('User Logged in!')
-                        this.navCtrl.setRoot(DealPage)
+                        this.navCtrl.setRoot(TabhomePage)
                     },
 				error => this.loginError = error.message
 			);

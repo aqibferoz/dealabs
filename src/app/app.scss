@@ -14,3 +14,13 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.actions-sheet{
+    color:  #621fd0 !important;
+    font-weight: bolder;
+    letter-spacing: 3px;
+    font-size: 50px;
+}
+
+.action-sheet-cancel{
+    color: red !important;
+}

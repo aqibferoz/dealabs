@@ -15,6 +15,7 @@ import { DataRequestPage } from '../pages/data-request/data-request';
 import { DealPage } from '../pages/deal/deal';
 import { TabhomePage } from '../pages/tabhome/tabhome';
 import { StartingPage } from '../pages/starting/starting';
+import { QrcodePage } from '../pages/qrcode/qrcode';
 
 
 
@@ -26,7 +27,7 @@ import { StartingPage } from '../pages/starting/starting';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = Login1Page;
+  rootPage: any = LoginPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {

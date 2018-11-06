@@ -3,16 +3,7 @@
 <ion-content>
   <ion-grid>
       <ion-row >
-          <ion-col text-center col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-
-
-            <!--  <button ion-button text-capitalize button-clear clear float-left (click)="onEvent('onSkip')">{{data.skip}}</button>
-              <button ion-button text-capitalize button-clear clear float-right (click)="onEvent('onRegister')">{{data.register}}</button>-->
-
-          </ion-col>
-
-
-
+        
           <ion-col col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6 form>
             <ion-item transparent text-center>
               <!---Logo Title-->
@@ -44,7 +35,7 @@
              <h2><strong>Deal details</strong></h2>
 
               <ion-label><strong>PRICE</strong></ion-label>
-             <ion-input type="text" placeholder="0.00" [(ngModel)]="dealsData.price" style="width: 320px;
+             <ion-input type="number" placeholder="0.00" [(ngModel)]="dealsData.price" style="width: 320px;
           padding: 2px;
           border: 1px solid gray;
           margin: 0;
@@ -84,7 +75,7 @@
             </textarea>
 
             <ion-label><strong>DEAL STARTS</strong></ion-label>
-             <ion-input type="text" placeholder="DD/MM/YY" [(ngModel)]="dealsData.startdate" style="width: 320px;
+             <ion-input type="date" placeholder="DD/MM/YY" [(ngModel)]="dealsData.startdate" style="width: 320px;
           padding: 2px;
           border: 1px solid gray;
           margin: 0;
@@ -93,7 +84,7 @@
             </ion-input>
 
             <ion-label><strong>DEAL EXPIRES</strong></ion-label>
-             <ion-input type="text" placeholder="DD/MM/YY" [(ngModel)]="dealsData.enddate" style="width: 320px;
+             <ion-input type="date" placeholder="DD/MM/YY" [(ngModel)]="dealsData.enddate" style="width: 320px;
           padding: 2px;
           border: 1px solid gray;
           margin: 0;

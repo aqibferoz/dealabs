@@ -17,9 +17,24 @@
 
     <ion-col col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6 form *ngIf="viewData">
         
-        <ion-avatar item-start style="margin-top:-35px; width:100%;">
-            <img src="{{viewData.image}}">
-          </ion-avatar>
+        <!-- <ion-avatar item-start > -->
+          <!-- <div style=" width:100% !important; height:180px !important;"> -->
+          <img style="height:50%; width: 100%;" src="{{viewData.image}}">
+          <!-- </div> -->
+          <!-- </ion-avatar> -->
+          <ion-row>
+            <ion-col col-4>
+
+            </ion-col>
+          <ion-col col-4 >
+                  <ngx-qrcode [qrc-value]="viewData.coupon"></ngx-qrcode> 
+                
+                 </ion-col>
+                 <ion-col col-4>
+
+                  </ion-col>
+                </ion-row>
+
           <!-- <br> -->
           <h2 item-title text-wrap style="font-weight:600; font-style: inherit; font-size: inherit; margin-left: 5% !important;">{{viewData.title}} | {{viewData.category}}</h2>
           <!-- <ion-row> -->

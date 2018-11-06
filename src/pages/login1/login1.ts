@@ -47,6 +47,7 @@ export class Login1Page {
 
   public userData;
 
+
   private isUsernameValid: boolean = true;
   private isPasswordValid: boolean = true;
   private credentials;
@@ -61,7 +62,7 @@ export class Login1Page {
   sourcex: any;
   base64Image: string;
   uploadImageId: any;
-  image: any;
+  image
 
   uploadPercent: Observable<number>;
 

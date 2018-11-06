@@ -46,6 +46,10 @@ export class AuthService {
 		user.updatePassword(password);
 	}
 
+	getUid(){
+		return this.afAuth.auth.currentUser.uid;
+	}
+
 	
 	
 	

@@ -15,7 +15,6 @@ import { DataRequestPage } from '../pages/data-request/data-request';
 import { DealPage } from '../pages/deal/deal';
 import { TabhomePage } from '../pages/tabhome/tabhome';
 import { StartingPage } from '../pages/starting/starting';
-import { QrcodePage } from '../pages/qrcode/qrcode';
 
 
 

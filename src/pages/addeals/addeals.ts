@@ -87,7 +87,7 @@ addDeals(){
     price: this.dealsData.price,
     startdate: this.dealsData.startdate,
     enddate: this.dealsData.enddate,
-    image: this.downloadURL,  
+    image: this.image,  
     category: this.dealsData.category,
     coupon: this.dealsData.coupon
   }
@@ -99,7 +99,10 @@ addDeals(){
     ,err=>{
     console.log(`error found`)
     
-  })
+  });
+  else{
+    this.helper.presentToast('Please fill all fields',1500,'bottom')
+  }
   this.helper.load()
   this.helper.presentBottomToast('Deal Added!')
   this.navCtrl.push("TabhomePage");

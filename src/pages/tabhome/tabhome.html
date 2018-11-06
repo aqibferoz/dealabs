@@ -25,12 +25,15 @@
         <!-- List Search-->
         <ion-col col-12 >
           <!-- Content List -->
-          <ion-list no-margin (click) = "viewUser(uid)">
-            <ion-item default-item no-lines>
+          <ion-list no-margin (click) = "viewUser(uid)" >
+            <ion-item default-item no-lines >
+
+
               <!-- <ion-avatar item-start >
-                <img src  = "assets/imgs/logo.png">
+                <img [src] = "item.image">
               </ion-avatar> -->
               <!--Title -->
+
               
               <h2 ion-text item-title style="margin-left: 30%;">{{user?.username}}</h2>
               <!--Subtitle -->
@@ -43,10 +46,7 @@
           </ion-list>
           
           <ion-searchbar style="background-color:white !important; border-radius:5px !important; 
-          margin:0 auto !important; max-width: 90% !important;" (ionInput)="getItems($event)"></ion-searchbar>
-
-          
-          
+          margin:0 auto !important; max-width: 90% !important;" (ionInput)="getItems($event)"></ion-searchbar>          
 
 
                 <ion-list no-margin>
@@ -57,8 +57,19 @@
                       <!-- <ion-avatar item-start style="border-radius:none !important"> -->
                         <ion-row>
                           <ion-col col-3>
+
+
+
+
+
                         <img [src]="item.image" style="width:70px; height:70px;">
                             <!-- <h5>{{item.category}}</h5> -->
+
+
+
+
+
+
                       </ion-col>
                       <!-- </ion-avatar> -->
                       <!--Content Title-->
@@ -74,12 +85,6 @@
                 <ion-col col-8>
                     <p>{{item.description}}</p>
                 </ion-col>
-
-                
-                <!-- <ion-col col-4 style="margin-top:1%" >
-                  <ngx-qrcode [qrc-value]="item.coupon" id="qrCode"></ngx-qrcode> -->
-                 
-                <!-- </ion-col> -->
                     
                 </ion-row>
                 
